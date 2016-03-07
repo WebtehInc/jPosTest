@@ -1,3 +1,3 @@
 <qtest class="org.jpos.qtest.QTest" logger="Q2">
-	<attr name="tickInterval" type="java.lang.Long">5000</attr>
+	<attr name="tickInterval" type="java.lang.Long">5000</attr> 
 </qtest>
