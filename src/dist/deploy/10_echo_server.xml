@@ -1,0 +1,3 @@
+<echo-server class="org.jpos.echo_server.EchoServer" logger="Q2">
+	 
+</echo-server>
