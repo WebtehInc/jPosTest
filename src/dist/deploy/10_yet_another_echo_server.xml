@@ -1,0 +1,9 @@
+<server class="org.jpos.q2.iso.QServer" logger="Q2"
+  name="simulator_11000">
+ <attr name="port" type="java.lang.Integer">11000</attr>
+ <channel class="org.jpos.iso.channel.XMLChannel"
+        logger="Q2" packager="org.jpos.iso.packager.XMLPackager">
+ </channel>
+ <request-listener class="org.jpos.echo_server.MessageResponder" logger="Q2">
+ </request-listener>
+</server>
