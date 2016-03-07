@@ -8,7 +8,7 @@ import org.jpos.iso.packager.XMLPackager;
 import org.jpos.q2.*;
 import org.jpos.util.LogSource;
 
-public class EchoServer extends QBeanSupport implements Runnable, EchoServerMBean, ISORequestListener {
+public class EchoServer extends QBeanSupport implements Runnable, EchoServerMBean {
 
     @Override
     protected void startService() throws IOException, ISOException {
@@ -28,20 +28,6 @@ public class EchoServer extends QBeanSupport implements Runnable, EchoServerMBea
         }
     }
 
-    @Override
-    public boolean process(ISOSource source, ISOMsg m) {
-        try {
-            m.setResponseMTI();
-            m.set(39, "00");
-            source.send(m);
-        } catch (ISOException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return true;
-    }
-    
     private void runServer() throws IOException, ISOException {
         // configure channel and assign logger
         ServerChannel channel = new XMLChannel(new XMLPackager());
@@ -50,7 +36,7 @@ public class EchoServer extends QBeanSupport implements Runnable, EchoServerMBea
         // configure server
         ISOServer server = new ISOServer(8000, channel, null);
         server.setLogger(log.getLogger(), "server");
-        server.addISORequestListener(new EchoServer());
+        server.addISORequestListener(new MessageResponder());
 
         server.run();
     }
